@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.cs209a_final_proj.Mapper.RepoMapper">
+    <resultMap id="RepoResult" type="com.example.cs209a_final_proj.entity.Repo">
+        <id column="repo_id" property="repo_id"></id>
+        <result column="repo_name" property="repo_name"></result>
+        <result column="total_developers" property="total_developers"></result>
+        <result column="total_open_issues" property="total_open_issues"></result>
+        <result column="total_closed_issues" property="total_closed_issues"></result>
+        <result column="total_releases" property="total_releases"></result>
+        <result column="issue_resolution_time" property="issue_resolution_time"></result>
+    </resultMap>
+    <select id="findAll" resultMap="RepoResult">
+        select repo.repo_id as repo_id,repo_name,total_developers,total_open_issues,total_closed_issues,total_releases,issue_resolution_time from repo join (select repo_id,count(num) as total_developers from(select Count(developer_name) as num ,repo_id  from commit group by developer_name,repo_id) as table1 group by repo_id) as table10 on repo.repo_id = table10.repo_id join (select repo_id,Count(issue_id) as total_open_issues from issue where state = 'open' group by repo_id) as table20 on table20.repo_id=repo.repo_id join (select repo_id,Count(issue_id) as total_closed_issues from issue where state = 'closed' group by repo_id) as table30 on table30.repo_id=repo.repo_id join (select repo_id,count(release_id) as total_releases from release group by repo_id) as table40 on table40.repo_id=repo.repo_id join (select repo_id,extract('epoch' from issue_resolution_time/3600.00/24.00) as issue_resolution_time from (select repo_id,sum(delta) / count(delta) as issue_resolution_time from (select repo_id,closed_at - issue.create_at as delta from issue where closed_at is not null) as table11 group by repo_id) as table12) as table50 on table50.repo_id=repo.repo_id;
+    </select>
+<!--    <resultMap id="DeveloperResult" type="com.example.cs209a_final_proj.entity.Developer">-->
+<!--        <id column="repo_id" property="repo_id"></id>-->
+<!--        <result column="developer_name" property="developer_name"></result>-->
+<!--        <result column="total_commits" property="total_commits"></result>-->
+<!--    </resultMap>-->
+<!--    <select id="findDevelopers" resultMap="DeveloperResult">-->
+<!--        select Count(developer_name) as num ,repo_id,developer_name  from commit where repo_id= group by developer_name,repo_id order by num desc limit 10-->
+<!--    </select>-->
+</mapper>
