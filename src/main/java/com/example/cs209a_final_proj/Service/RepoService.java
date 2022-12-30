@@ -10,19 +10,20 @@ import java.util.List;
 
 @Service
 public class RepoService {
-    @Autowired
-    private RepoMapper repoMapper;
 
-    public List<Repo> findAll(){
-        return repoMapper.findAll();
-    }
+  @Autowired
+  private RepoMapper repoMapper;
 
-    public List<Developer> developers(int repo_id){
-        return repoMapper.developers();
-    }
+  public List<Repo> findAll() {
+    return repoMapper.findAll();
+  }
 
-    public List<IssueStatus> issueStatus(int repo_id){
-        return repoMapper.issueStatus();
-    }
+  public List<Developer> developers(int repo_id) {
+    return repoMapper.developers();
+  }
+
+  public List<IssueStatus> issueStatus(int repo_id) {
+    return repoMapper.issueStatus();
+  }
 
 }

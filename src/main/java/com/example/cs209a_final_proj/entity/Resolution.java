@@ -1,60 +1,61 @@
 package com.example.cs209a_final_proj.entity;
 
 public class Resolution {
-    int three;
-    int week;
-    int month;
-    int more;
 
-    public Resolution(int three, int week, int month, int more) {
-        this.three = three;
-        this.week = week;
-        this.month = month;
-        this.more = more;
-    }
+  int three;
+  int week;
+  int month;
+  int more;
 
-    public Resolution() {
-    }
+  public Resolution(int three, int week, int month, int more) {
+    this.three = three;
+    this.week = week;
+    this.month = month;
+    this.more = more;
+  }
 
-    public void setThree(int three) {
-        this.three = three;
-    }
+  public Resolution() {
+  }
 
-    public void setWeek(int week) {
-        this.week = week;
-    }
+  public void setThree(int three) {
+    this.three = three;
+  }
 
-    public void setMonth(int month) {
-        this.month = month;
-    }
+  public void setWeek(int week) {
+    this.week = week;
+  }
 
-    public void setMore(int more) {
-        this.more = more;
-    }
+  public void setMonth(int month) {
+    this.month = month;
+  }
 
-    public int getThree() {
-        return three;
-    }
+  public void setMore(int more) {
+    this.more = more;
+  }
 
-    public int getWeek() {
-        return week;
-    }
+  public int getThree() {
+    return three;
+  }
 
-    public int getMonth() {
-        return month;
-    }
+  public int getWeek() {
+    return week;
+  }
 
-    public int getMore() {
-        return more;
-    }
+  public int getMonth() {
+    return month;
+  }
 
-    @Override
-    public String toString() {
-        return "{" +
-                "three=" + three +
-                ", week=" + week +
-                ", month=" + month +
-                ", more=" + more +
-                '}';
-    }
+  public int getMore() {
+    return more;
+  }
+
+  @Override
+  public String toString() {
+    return "{" +
+        "three=" + three +
+        ", week=" + week +
+        ", month=" + month +
+        ", more=" + more +
+        '}';
+  }
 }

@@ -9,8 +9,10 @@ import java.util.List;
 
 @Mapper
 public interface RepoMapper {
-    List<Repo> findAll();
-    List<Developer> developers();
 
-    List<IssueStatus> issueStatus();
+  List<Repo> findAll();
+
+  List<Developer> developers();
+
+  List<IssueStatus> issueStatus();
 }
